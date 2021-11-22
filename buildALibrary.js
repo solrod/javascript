@@ -1,6 +1,8 @@
-// Øvelse med Classes
+// Øvelse med Classes & inheritance
+// der er en Media, Book og Movie class
 
 class Media {
+    // Media class samler alt hvad der er fælles for de 3 classes title, isCheckedOut, ratings
     constructor(title) {
         this._title = title;
         this._isCheckedOut = false;
@@ -39,11 +41,12 @@ class Media {
     }
 
     // method that adds to ratings array
+    // jeg ved ikke hvorfor den ikke skal være en setter.
     addRating(score) {
         this._ratings.push(score);
     } 
 
-    // setter
+    // setters
     set isCheckedOut(state) {
         if(state === false || state === true){
             this._isCheckedOut = state;
@@ -51,11 +54,14 @@ class Media {
             console.log("You have to enter true or false...");
         }
     }
-}
+
+
+};
 
 
 // book class
 class Book extends Media {
+    // Book class arver title fra Media class og har selv author og pages
     constructor(title, author, pages){
         super(title);
         this._author = author;
@@ -71,11 +77,12 @@ class Book extends Media {
         return this._pages;
     }
 
-}
+};
 
 
 // movie class
 class Movies extends Media {
+    // Movie class arver title fra Media class og har selv director og runtime
     constructor(title, director, runtime){
         super(title);
         this._director = director;
@@ -90,11 +97,24 @@ class Movies extends Media {
         return this._runtime;
     }
     
-}
+};
 
 
 
+// new book instance
+const historyOfEverything =new Book('Bill Bryson', 'A Short History of Nearly Everything', 522);    // Husk new ved oprettelse af et nyt object.
+historyOfEverything.toggleCheckOutStatus();
+console.log(`Book instance is checked out: ${historyOfEverything.isCheckedOut}`);
+historyOfEverything.addRating(4);
+historyOfEverything.addRating(5);
+historyOfEverything.addRating(5);
+console.log(`Book instance average rating: ${historyOfEverything.getAverageRating()}`);
 
-let media1 =new Media("Wicked");    // Husk new ved oprettelse af et nyt object. isChecked out & rating er foruddeffineret og derfor kun 1 indtastning
-media1.addRating(23)
-console.log(media1.getAverageRating());
+// new movie instance
+const speed = new Movies('Jan de Bont', "Jan de Bont", 116);
+speed.toggleCheckOutStatus();
+console.log(`Movie instance is checked out: ${speed.isCheckedOut}`);
+speed.addRating(1);
+speed.addRating(1);
+speed.addRating(5);
+console.log(`Speed instance average rating: ${speed.getAverageRating()}`);
