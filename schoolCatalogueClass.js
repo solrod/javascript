@@ -78,3 +78,4 @@ console.log(`The substitue teacher will be: ${lorraineHansbury.pickSubstituteTea
 
 const alSmith = new Highschool('Al E. Smith', 415, ['Baseball', 'Basketball', 'Volleyball', 'Track and Field']);
 alSmith.sportsTeams;
+
